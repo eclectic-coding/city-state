@@ -62,7 +62,13 @@ module CS
       self.install(state_fn.split(".").last.upcase.to_sym) # reinstall country
     end
     @countries, @states, @cities = [{}, {}, {}] # invalidades cache
-    File.delete COUNTRIES_FN # force countries.yml to be generated at next call of CS.countries
+    p "countries_fn: #{COUNTRIES_FN}"
+    p "countries_fn: #{COUNTRIES_FN.nil?}"
+    p "Absolute path: #{File.expand_path(COUNTRIES_FN)}"
+
+    if File.exist?(COUNTRIES_FN)
+      File.delete COUNTRIES_FN # force countries.yml to be generated at next call of CS.countries
+    end
     true
   end
 
