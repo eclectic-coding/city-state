@@ -174,14 +174,14 @@ module CS
 
       # Process lookup table
       lookup = get_cities_lookup(country, state)
-      if ! lookup.nil?
+      if !lookup.nil?
         lookup.each do |old_value, new_value|
           if new_value.nil? || self.blank?(new_value)
             @cities[country][state].delete(old_value)
           else
             index = @cities[country][state].index(old_value)
             if index.nil?
-              @cities[country][state][] = new_value
+              @cities[country][state] << new_value
             else
               @cities[country][state][index] = new_value
             end
